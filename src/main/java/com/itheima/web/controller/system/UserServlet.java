@@ -2,6 +2,7 @@ package com.itheima.web.controller.system;
 
 
 import com.github.pagehelper.PageInfo;
+import com.itheima.domain.system.Dept;
 import com.itheima.domain.system.User;
 import com.itheima.utils.BeanUtil;
 import com.itheima.web.controller.BaseServlet;
@@ -12,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
 //uri:/system/user?operation=list
 @WebServlet("/system/user")
 public class UserServlet extends BaseServlet {
@@ -53,6 +56,11 @@ public class UserServlet extends BaseServlet {
         request.getRequestDispatcher("/WEB-INF/pages/system/user/list.jsp").forward(request,response);
     }
     private void toAdd(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        //查询部门信息
+        List<Dept> all = deptService.findAll();
+        //放入指定位置
+        request.setAttribute("deptList",all);
+
         //跳转页面
         request.getRequestDispatcher("/WEB-INF/pages/system/user/add.jsp").forward(request,response);
     }
@@ -74,6 +82,10 @@ public class UserServlet extends BaseServlet {
         User user = userService.findById(id);
         //将数据加载到指定区域，供页面获取
         request.setAttribute("user",user);
+        //查询部门信息
+        List<Dept> all = deptService.findAll();
+        //放入指定位置
+        request.setAttribute("deptList",all);
         //跳转页面
         request.getRequestDispatcher("/WEB-INF/pages/system/user/update.jsp").forward(request,response);
     }
