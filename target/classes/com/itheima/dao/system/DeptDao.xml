@@ -7,6 +7,14 @@
         <result column="dept_name" jdbcType="VARCHAR" property="deptName"/>
         <result column="parent_id" jdbcType="VARCHAR" property="parentId"/>
         <result column="state" jdbcType="DECIMAL" property="state"/>
+        <!--关联关系-->
+        <association
+                property="parent"
+                javaType="com.itheima.domain.system.Dept"
+                column="parent_id"
+                select="com.itheima.dao.system.DeptDao.findById"
+        />
+
     </resultMap>
 
     <!--配置查询的列名公共SQL语句-->
