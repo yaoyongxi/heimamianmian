@@ -37,7 +37,7 @@ public class CompanyServlet extends BaseServlet {
     private void list(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         //进入列表页
         //获取数据
-//        CompanyService companyService = new CompanyServiceImpl();
+//        CompanyService = new CompanyServiceImpl();
         int page =1;
         int size =5;
         if(StringUtils.isNotBlank(request.getParameter("page"))){
@@ -60,7 +60,7 @@ public class CompanyServlet extends BaseServlet {
         //将数据获取到，封装成一个对象
         Company company = BeanUtil.fillBean(request, Company.class,"yyyy-MM-dd");
         //调用业务层接口Save
-//        CompanyService companyService = new CompanyServiceImpl();
+//        CompanyService = new CompanyServiceImpl();
         companyService.save(company);
         //跳转回到页面list
         //list(request, response);
@@ -70,7 +70,7 @@ public class CompanyServlet extends BaseServlet {
     private void toEdit(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
         //查询要修改的数据findById
         String id = request.getParameter("id");
-//        CompanyService companyService = new CompanyServiceImpl();
+//        CompanyService = new CompanyServiceImpl();
         Company company = companyService.findById(id);
         //将数据加载到指定区域，供页面获取
         request.setAttribute("company",company);
@@ -81,7 +81,7 @@ public class CompanyServlet extends BaseServlet {
         //将数据获取到，封装成一个对象
         Company company = BeanUtil.fillBean(request, Company.class,"yyyy-MM-dd");
         //调用业务层接口Save
-//        CompanyService companyService = new CompanyServiceImpl();
+//        CompanyService = new CompanyServiceImpl();
         companyService.update(company);
         //跳转回到页面list
         //list(request, response);
@@ -91,7 +91,7 @@ public class CompanyServlet extends BaseServlet {
         //将数据获取到，封装成一个对象
         Company company = BeanUtil.fillBean(request, Company.class);
         //调用业务层接口Save
-//        CompanyService companyService = new CompanyServiceImpl();
+//        CompanyService = new CompanyServiceImpl();
         companyService.delete(company);
         //跳转回到页面list
         //list(request, response);
