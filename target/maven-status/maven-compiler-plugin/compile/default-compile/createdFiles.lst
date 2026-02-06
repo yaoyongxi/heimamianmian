@@ -5,6 +5,7 @@ com\itheima\utils\BeanUtil.class
 com\itheima\web\controller\BaseServlet.class
 com\itheima\web\controller\store\CompanyServlet.class
 com\itheima\utils\TransactionUtil.class
+com\itheima\service\store\impl\CompanyServiceImpl.class
 com\itheima\web\controller\system\DeptServlet.class
 com\itheima\factory\MapperFactory.class
 com\itheima\service\store\CompanyService.class
