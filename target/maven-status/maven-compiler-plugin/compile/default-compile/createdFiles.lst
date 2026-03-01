@@ -18,6 +18,7 @@ com\itheima\service\system\impl\UserServiceImpl.class
 com\itheima\service\system\UserService.class
 com\itheima\web\controller\system\UserServlet.class
 com\itheima\web\controller\system\DeptServlet.class
+com\itheima\web\filters\CharacterEncodingFilter.class
 com\itheima\factory\MapperFactory.class
 com\itheima\service\store\impl\CourseServiceImpl.class
 com\itheima\service\store\CompanyService.class

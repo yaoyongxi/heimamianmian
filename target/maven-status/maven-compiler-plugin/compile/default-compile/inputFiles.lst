@@ -22,4 +22,5 @@ D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\dao\system\DeptDao.jav
 D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\domain\store\Course.java
 D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\service\system\impl\UserServiceImpl.java
 D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\service\store\CompanyService.java
+D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\web\filters\CharacterEncodingFilter.java
 D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\service\system\UserService.java

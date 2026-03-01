@@ -53,6 +53,12 @@
                                     <button type="button" onclick='document.getElementById("editForm").submit()'  class="btn bg-maroon">保存</button>
                                     <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
                                 </div>
+                                <!--工具栏-->
+                                <div class="box-tools text-center">
+                                    <button type="button" onclick='document.getElementById("editForm").submit()' class="btn bg-maroon">保存</button>
+                                    <button type="button" class="btn bg-default" onclick="history.back(-1);">返回</button>
+                                </div>
+                                <!--工具栏/-->
                             </div>
                         </div>
                     </form>
