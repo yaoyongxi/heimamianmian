@@ -7,11 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * 字符集过滤器
- * @author 黑马程序员
- * @Company http://www.itheima.com
- */
+
 @WebFilter(value = "/*",initParams={@WebInitParam(name = "encoding",value = "UTF-8")})
 public class CharacterEncodingFilter implements Filter {
 
