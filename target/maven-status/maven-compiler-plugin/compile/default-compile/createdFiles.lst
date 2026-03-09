@@ -1,7 +1,6 @@
 com\itheima\service\system\impl\DeptServiceImpl.class
 com\itheima\domain\store\Company.class
 com\itheima\utils\TransactionUtil.class
-com\itheima\utils\MD5Util.class
 com\itheima\domain\system\User.class
 com\itheima\service\store\impl\CompanyServiceImpl.class
 com\itheima\service\system\DeptService.class

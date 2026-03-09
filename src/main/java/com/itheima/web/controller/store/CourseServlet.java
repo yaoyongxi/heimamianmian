@@ -84,7 +84,7 @@ public class CourseServlet extends BaseServlet {
 //        CourseService = new CourseServiceImpl();
         courseService.update(course);
         //跳转回到页面list
-        //list(request, response);
+//        list(request, response);
         response.sendRedirect(request.getContextPath()+"/store/course?operation=list");
     }
     private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
