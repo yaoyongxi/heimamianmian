@@ -70,10 +70,13 @@
                                     <input type="file" class="form-control" placeholder="题干图片" name="picture" value="${question.picture}">
                                 </div>
 
-                                <div class="col-md-2 title">题干图片</div>
-                                <div class="col-md-10 data ">
-                                    <img src="${ctx}/upload/${question.picture}"/>
-                                </div>
+                                <c:if test="${question.picture.length() > 0}">
+
+                                    <div class="col-md-2 title">题干图片</div>
+                                    <div class="col-md-10 data ">
+                                        <img src="${ctx}/upload/${question.picture}"/>
+                                    </div>
+                                </c:if>
 
                                 <div class="col-md-2 title rowHeight2x">题目分析</div>
                                 <div class="col-md-10 data rowHeight2x">

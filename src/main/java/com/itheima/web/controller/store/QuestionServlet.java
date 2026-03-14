@@ -120,11 +120,21 @@ public class QuestionServlet extends BaseServlet {
             ServletFileUpload fileUpload = new ServletFileUpload(factory);
             //4.从request中读取数据
             List<FileItem> fileItems = fileUpload.parseRequest(request);
+
+            //创建一个标记位，标记当前时候有上传文件的操作
+            boolean flag = false;
+            for(FileItem item : fileItems){
+                if(StringUtils.isNotBlank(item.getName())){
+                    flag=true;
+                    break;
+                }
+            }
+
             // --处理form表单提交过来的普通数据
             //将数据获取到，封装成一个对象
             Question question = BeanUtil.fillBean(fileItems,Question.class);
             //调用业务层接口save
-            String picture = questionService.save(question);
+            String picture = questionService.save(question,flag);
 
             // --处理form表单提交过来的文件数据
             for(FileItem item : fileItems){
@@ -164,11 +174,20 @@ public class QuestionServlet extends BaseServlet {
             ServletFileUpload fileUpload = new ServletFileUpload(factory);
             //4.从request中读取数据
             List<FileItem> fileItems = fileUpload.parseRequest(request);
+
+            //创建一个标记位，标记当前时候有上传文件的操作
+            boolean flag = false;
+            for(FileItem item : fileItems){
+                if(StringUtils.isNotBlank(item.getName())){
+                    flag=true;
+                    break;
+                }
+            }
             // --处理form表单提交过来的普通数据
             //将数据获取到，封装成一个对象
             Question question = BeanUtil.fillBean(fileItems,Question.class);
             //调用业务层接口save
-            questionService.update(question);
+            questionService.update(question,flag);
 
             // --处理form表单提交过来的文件数据
             for(FileItem item : fileItems){

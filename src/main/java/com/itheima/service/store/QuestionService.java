@@ -10,8 +10,9 @@ public interface QuestionService {
      * 添加
      * @param question
      * @return 保存的图片名称
+     * @param flag 是否有上传文件的操作
      */
-    String save(Question question);
+    String save(Question question,boolean flag);
 
     /**
      * 删除
@@ -24,8 +25,9 @@ public interface QuestionService {
      * 修改
      * @param question
      * @return
+     * @param flag 是否有上传文件的操作
      */
-    void update(Question question);
+    void update(Question question,boolean flag);
 
     /**
      * 查询单个

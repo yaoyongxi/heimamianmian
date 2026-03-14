@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class QuestionServiceImpl implements QuestionService {
     @Override
-    public String save(Question question) {
+    public String save(Question question,boolean flag) {
         SqlSession sqlSession = null;
         try{
             //1.获取SqlSession
@@ -29,9 +29,12 @@ public class QuestionServiceImpl implements QuestionService {
             //设置新创建的题目默认的审核状态为未审核（0）
             question.setReviewStatus("0");
             question.setCreateTime(new Date());
-            //设置当前存储的图片名称为id值
-            question.setPicture(id);
 
+            //检测到前端上传文件了，记录文件名，否则不记录
+            if(flag){
+                //设置当前存储的图片名称为id值
+                question.setPicture(id);
+            }
             //3.调用Dao层操作
             questionDao.save(question);
             //4.提交事务
@@ -76,13 +79,20 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public void update(Question question) {
+    public void update(Question question,boolean flag) {
         SqlSession sqlSession = null;
         try{
             //1.获取SqlSession
             sqlSession = MapperFactory.getSqlSession();
             //2.获取Dao
             QuestionDao questionDao = MapperFactory.getMapper(sqlSession,QuestionDao.class);
+            //检测到前端上传文件了，记录文件名，否则不记录
+
+            if(flag){
+                //设置当前存储的图片名称为id值
+                question.setPicture(question.getId());
+            }
+
             //3.调用Dao层操作
             questionDao.update(question);
             //4.提交事务
