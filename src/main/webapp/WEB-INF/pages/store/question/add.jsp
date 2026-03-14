@@ -63,6 +63,12 @@
                                         <textarea class="form-control" rows="3" name="subject"></textarea>
                                     </div>
 
+<%--                                    <div class="col-md-2 title">题干图片</div>--%>
+<%--                                    <div class="col-md-10 data ">--%>
+<%--                                        <input type="file" class="form-control" placeholder="题干图片" name="picture">--%>
+<%--                                    </div>--%>
+
+
                                     <div class="col-md-2 title rowHeight2x">题目分析</div>
                                     <div class="col-md-10 data rowHeight2x">
                                         <textarea class="form-control" rows="3" name="analysis"></textarea>

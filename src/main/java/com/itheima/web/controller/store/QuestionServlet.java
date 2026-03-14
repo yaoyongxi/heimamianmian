@@ -7,12 +7,17 @@ import com.itheima.domain.store.Course;
 import com.itheima.domain.store.Question;
 import com.itheima.utils.BeanUtil;
 import com.itheima.web.controller.BaseServlet;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -35,9 +40,41 @@ public class QuestionServlet extends BaseServlet {
             this.edit(request,response);
         }else if ("delete".equals(operation)) {
             this.delete(request,response);
+        }else if ("toTestUpload".equals(operation)) {
+            this.toTestUpload(request,response);
+        }else if ("testUpload".equals(operation)) {
+            try {
+                this.testUpload(request,response);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+    private void toTestUpload(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+
+        //跳转页面
+        request.getRequestDispatcher("/WEB-INF/pages/store/question/testFileUpload.jsp").forward(request,response);
+    }
+    private void testUpload(HttpServletRequest request,HttpServletResponse response) throws Exception {
+        //1.确认该操作是否支持文件上传操作enctype="multipart/form-data"
+        if(ServletFileUpload.isMultipartContent(request)){
+           //2.创建磁盘工厂对象
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+            //3.Servlet文件上传核心对象
+            ServletFileUpload fileUpload = new ServletFileUpload(factory);
+            //4.从request中读取数据
+            List<FileItem> fileItems = fileUpload.parseRequest(request);
+
+            for (FileItem item : fileItems){
+                //5.当前表单是否是文件表单
+                if(!item.isFormField()){
+                    //6.从临时存储文件的地方将内容写入到指定位置
+                    item.write(new File(this.getServletContext().getRealPath("upload"),item.getName()));
+                }
+            }
         }
     }
-
 
     private void list(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
         //进入列表页

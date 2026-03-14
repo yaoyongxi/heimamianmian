@@ -12,6 +12,8 @@ public class Question {
 
     private String subject;     //题干
 
+//    private String picture;//图片
+
     private String analysis;	//题目分析
 
     private String type;       	//题目类型  1:单选，2：多选，3：简答
@@ -25,6 +27,14 @@ public class Question {
 
     private Company company;
     private Catalog catalog;
+
+//    public String getPicture() {
+//        return picture;
+//    }
+//
+//    public void setPicture(String picture) {
+//        this.picture = picture;
+//    }
 
     public String getId() {
         return id;

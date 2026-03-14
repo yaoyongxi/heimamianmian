@@ -21,6 +21,7 @@
         select
         <include refid="Base_Column_List"/>
         from st_course
+        order by create_time
     </select>
 
     <!--配置根据ID查询-->
