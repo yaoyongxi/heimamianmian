@@ -9,9 +9,9 @@ public interface QuestionService {
     /**
      * 添加
      * @param question
-     * @return
+     * @return 保存的图片名称
      */
-    void save(Question question);
+    String save(Question question);
 
     /**
      * 删除
@@ -35,7 +35,7 @@ public interface QuestionService {
     Question findById(String id);
 
     /**
-     *查询全部的数据
+     * 查询全部的数据
      * @return 全部数据的列表对象
      */
     List<Question> findAll();
