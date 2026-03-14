@@ -3,7 +3,7 @@ package com.itheima.domain.store;
 import java.util.Date;
 
 public class Question {
-    private String id;			//题目ID
+    private String id;            //题目ID
 
     private String companyId;	//所属企业
     private String catalogId;	//题目所属目录ID
@@ -12,7 +12,7 @@ public class Question {
 
     private String subject;     //题干
 
-//    private String picture;//图片
+    private String picture;
 
     private String analysis;	//题目分析
 
@@ -28,13 +28,13 @@ public class Question {
     private Company company;
     private Catalog catalog;
 
-//    public String getPicture() {
-//        return picture;
-//    }
-//
-//    public void setPicture(String picture) {
-//        this.picture = picture;
-//    }
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
 
     public String getId() {
         return id;

@@ -14,7 +14,6 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
     <!-- 页面meta /-->
-
 </head>
 <script>
     function deleteById() {
@@ -60,7 +59,7 @@
                     <div class="form-group form-inline">
                         <div class="btn-group">
                             <button type="button" class="btn btn-default" title="新建" onclick='location.href="${ctx}/store/question?operation=toAdd"'><i class="fa fa-file-o"></i> 新建</button>
-                            <button type="button" class="btn btn-default" title="上传" onclick='location.href="${ctx}/store/question?operation=toTestUpload"'><i class="fa fa-file-o"></i> 上传</button>
+                            <button type="button" class="btn btn-default" title="测试文件上传" onclick='location.href="${ctx}/store/question?operation=toTestUpload"'><i class="fa fa-file-o"></i> 测试文件上传</button>
                             <button type="button" class="btn btn-default" title="删除" onclick='deleteById()'><i class="fa fa-trash-o"></i> 删除</button>
                             <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
 <%--
@@ -85,6 +84,7 @@
                         <th class="" style="padding-right:0px;">
                             <input type="checkbox" name="selid" onclick="checkAll('id',this)">
                         </th>
+                        <th class="sorting">图片</th>
                         <th class="sorting">企业</th>
                         <th class="sorting">类别</th>
                         <th class="sorting">题目</th>
@@ -100,6 +100,7 @@
                     <c:forEach items="${page.list}" var="o" varStatus="status">
                     <tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
                         <td><input type="checkbox" name="id" value="${o.id}"/></td>
+                        <td>${o.picture}</td>
                         <td>${o.company.name}</td>
                         <td>${o.catalog.name}</td>
                         <td>${o.subject}</td>

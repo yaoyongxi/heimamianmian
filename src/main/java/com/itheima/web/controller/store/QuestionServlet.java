@@ -33,7 +33,11 @@ public class QuestionServlet extends BaseServlet {
         } else if ("toAdd".equals(operation)) {
             this.toAdd(request, response);
         }else if ("save".equals(operation)) {
-            this.save(request, response);
+            try {
+                this.save(request, response);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }else if ("toEdit".equals(operation)) {
             this.toEdit(request,response);
         }else if ("edit".equals(operation)) {
@@ -104,12 +108,33 @@ public class QuestionServlet extends BaseServlet {
         //跳转页面
         request.getRequestDispatcher("/WEB-INF/pages/store/question/add.jsp").forward(request,response);
     }
-    private void save(HttpServletRequest request,HttpServletResponse response) throws IOException {
-        //将数据获取到，封装成一个对象
-        Question question = BeanUtil.fillBean(request, Question.class,"yyyy-MM-dd");
-        //调用业务层接口Save
-//        QuestionService = new QuestionServiceImpl();
-        questionService.save(question);
+    private void save(HttpServletRequest request,HttpServletResponse response) throws Exception {
+
+        //1.确认该操作是否支持文件上传操作enctype="multipart/form-data"
+        if(ServletFileUpload.isMultipartContent(request)){
+            //2.创建磁盘工厂对象
+            DiskFileItemFactory factory = new DiskFileItemFactory();
+            //3.Servlet文件上传核心对象
+            ServletFileUpload fileUpload = new ServletFileUpload(factory);
+            //4.从request中读取数据
+            List<FileItem> fileItems = fileUpload.parseRequest(request);
+
+            //①处理form表单提交过来的普通数据
+            //将数据获取到，封装成一个对象
+            Question question = BeanUtil.fillBean(fileItems, Question.class);
+            //调用业务层接口Save
+//           QuestionService = new QuestionServiceImpl();
+            questionService.save(question);
+
+            //②处理form表单提交过来的文件数据
+            for (FileItem item : fileItems){
+                //5.当前表单是否是文件表单
+                if(!item.isFormField()){
+                    //6.从临时存储文件的地方将内容写入到指定位置
+                    item.write(new File(this.getServletContext().getRealPath("upload"),item.getName()));
+                }
+            }
+        }
         //跳转回到页面list
         //list(request, response);
         response.sendRedirect(request.getContextPath()+"/store/question?operation=list");

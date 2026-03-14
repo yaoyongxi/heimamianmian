@@ -44,8 +44,6 @@ public class BeanUtil {
 		}
 	}
 
-
-
 	/**
 	 * 封装表单中的数据到javabean中,带有日期格式数据
 	 * @param request	表单中的数据
