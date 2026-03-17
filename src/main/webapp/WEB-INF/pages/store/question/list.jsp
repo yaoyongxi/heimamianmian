@@ -14,6 +14,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
     <!-- 页面meta /-->
+
 </head>
 <script>
     function deleteById() {
@@ -65,7 +66,7 @@
 <%--
                             <button type="button" class="btn btn-default" title="上传题目" onclick='location.href="${ctx}/store/question?operation=toImport"'><i class="fa fa-adn"></i> 上传题目</button>
 --%>
-                            <button type="button" class="btn btn-default" title="导出题目" onclick=location.href="${ctx}/store/question?operation=toExport"> <i class="fa fa-download"></i>导出题目</button>
+                            <button type="button" class="btn btn-default" title="导出题目" onclick=location.href="${ctx}/store/question?operation=downloadReport"> <i class="fa fa-download"></i>导出题目</button>
                         </div>
                     </div>
                 </div>
@@ -84,7 +85,6 @@
                         <th class="" style="padding-right:0px;">
                             <input type="checkbox" name="selid" onclick="checkAll('id',this)">
                         </th>
-                        <th class="sorting">图片</th>
                         <th class="sorting">企业</th>
                         <th class="sorting">类别</th>
                         <th class="sorting">题目</th>
@@ -100,7 +100,6 @@
                     <c:forEach items="${page.list}" var="o" varStatus="status">
                     <tr class="odd" onmouseover="this.className='highlight'" onmouseout="this.className='odd'" >
                         <td><input type="checkbox" name="id" value="${o.id}"/></td>
-                        <td>${o.picture}</td>
                         <td>${o.company.name}</td>
                         <td>${o.catalog.name}</td>
                         <td>${o.subject}</td>

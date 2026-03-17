@@ -5,7 +5,6 @@ import com.itheima.domain.store.QuestionItem;
 
 import java.util.List;
 
-
 public interface QuestionItemService {
     /**
      * 添加
@@ -35,7 +34,6 @@ public interface QuestionItemService {
      */
     QuestionItem findById(String id);
 
-
     /**
      * 分页查询数据
      * @param questionId 题目对应的id
@@ -43,5 +41,5 @@ public interface QuestionItemService {
      * @param size 每页显示的数据总量
      * @return
      */
-    PageInfo findAll(String questionId,int page, int size);
+    PageInfo findAll(String questionId ,int page, int size);
 }

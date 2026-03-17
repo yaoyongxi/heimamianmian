@@ -12,16 +12,15 @@ import org.apache.ibatis.session.SqlSession;
 import java.util.List;
 import java.util.UUID;
 
-
 public class QuestionItemServiceImpl implements QuestionItemService {
     @Override
     public void save(QuestionItem questionItem) {
         SqlSession sqlSession = null;
-        try {
-            //1.获取sqlSession
+        try{
+            //1.获取SqlSession
             sqlSession = MapperFactory.getSqlSession();
             //2.获取Dao
-            QuestionItemDao questionItemDao = MapperFactory.getMapper(sqlSession, QuestionItemDao.class);
+            QuestionItemDao questionItemDao = MapperFactory.getMapper(sqlSession,QuestionItemDao.class);
             //id使用UUID的生成策略来获取
             String id = UUID.randomUUID().toString();
             questionItem.setId(id);
@@ -29,18 +28,14 @@ public class QuestionItemServiceImpl implements QuestionItemService {
             questionItemDao.save(questionItem);
             //4.提交事务
             TransactionUtil.commit(sqlSession);
-
         }catch (Exception e){
-            //回滚事务
             TransactionUtil.rollback(sqlSession);
-            //将错误返回最上面
             throw new RuntimeException(e);
             //记录日志
         }finally {
             try {
                 TransactionUtil.close(sqlSession);
             }catch (Exception e){
-                //打印异常
                 e.printStackTrace();
             }
         }
@@ -49,27 +44,23 @@ public class QuestionItemServiceImpl implements QuestionItemService {
     @Override
     public void delete(QuestionItem questionItem) {
         SqlSession sqlSession = null;
-        try {
-            //1.获取sqlSession
+        try{
+            //1.获取SqlSession
             sqlSession = MapperFactory.getSqlSession();
             //2.获取Dao
-            QuestionItemDao questionItemDao = MapperFactory.getMapper(sqlSession, QuestionItemDao.class);
+            QuestionItemDao questionItemDao = MapperFactory.getMapper(sqlSession,QuestionItemDao.class);
             //3.调用Dao层操作
             questionItemDao.delete(questionItem);
             //4.提交事务
             TransactionUtil.commit(sqlSession);
-
         }catch (Exception e){
-            //回滚事务
             TransactionUtil.rollback(sqlSession);
-            //将错误返回最上面
             throw new RuntimeException(e);
             //记录日志
         }finally {
             try {
                 TransactionUtil.close(sqlSession);
             }catch (Exception e){
-                //打印异常
                 e.printStackTrace();
             }
         }
@@ -78,83 +69,72 @@ public class QuestionItemServiceImpl implements QuestionItemService {
     @Override
     public void update(QuestionItem questionItem) {
         SqlSession sqlSession = null;
-        try {
-            //1.获取sqlSession
+        try{
+            //1.获取SqlSession
             sqlSession = MapperFactory.getSqlSession();
             //2.获取Dao
-            QuestionItemDao questionItemDao = MapperFactory.getMapper(sqlSession, QuestionItemDao.class);
+            QuestionItemDao questionItemDao = MapperFactory.getMapper(sqlSession,QuestionItemDao.class);
             //3.调用Dao层操作
             questionItemDao.update(questionItem);
             //4.提交事务
             TransactionUtil.commit(sqlSession);
-
         }catch (Exception e){
-            //回滚事务
             TransactionUtil.rollback(sqlSession);
-            //将错误返回最上面
             throw new RuntimeException(e);
             //记录日志
         }finally {
             try {
                 TransactionUtil.close(sqlSession);
             }catch (Exception e){
-                //打印异常
                 e.printStackTrace();
             }
         }
-
     }
 
     @Override
     public QuestionItem findById(String id) {
         SqlSession sqlSession = null;
-        try {
-            //1.获取sqlSession
+        try{
+            //1.获取SqlSession
             sqlSession = MapperFactory.getSqlSession();
             //2.获取Dao
-            QuestionItemDao questionItemDao = MapperFactory.getMapper(sqlSession, QuestionItemDao.class);
+            QuestionItemDao questionItemDao = MapperFactory.getMapper(sqlSession,QuestionItemDao.class);
             //3.调用Dao层操作
             return questionItemDao.findById(id);
         }catch (Exception e){
-            //将错误返回最上面
             throw new RuntimeException(e);
             //记录日志
         }finally {
             try {
                 TransactionUtil.close(sqlSession);
             }catch (Exception e){
-                //打印异常
                 e.printStackTrace();
             }
         }
     }
 
-
     @Override
-    public PageInfo findAll(String questionId,int page, int size) {
+    public PageInfo findAll(String questionId ,int page, int size) {
         SqlSession sqlSession = null;
-        try {
-            //1.获取sqlSession
+        try{
+            //1.获取SqlSession
             sqlSession = MapperFactory.getSqlSession();
             //2.获取Dao
-            QuestionItemDao questionItemDao = MapperFactory.getMapper(sqlSession, QuestionItemDao.class);
+            QuestionItemDao questionItemDao = MapperFactory.getMapper(sqlSession,QuestionItemDao.class);
             //3.调用Dao层操作
             PageHelper.startPage(page,size);
             List<QuestionItem> all = questionItemDao.findAll(questionId);
             PageInfo pageInfo = new PageInfo(all);
             return pageInfo;
         }catch (Exception e){
-            //将错误返回最上面
             throw new RuntimeException(e);
             //记录日志
         }finally {
             try {
                 TransactionUtil.close(sqlSession);
             }catch (Exception e){
-                //打印异常
                 e.printStackTrace();
             }
         }
     }
 }
-

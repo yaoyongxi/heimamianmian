@@ -1,11 +1,22 @@
 package com.itheima.domain.store;
 
 public class QuestionItem {
-    private String id; //ID
-    private String questionId;//题目ID
-    private String content;//选项内容
-    private String picture;//选项图片
-    private String isRight;//是否正确答案
+    private String id;          	//ID
+    private String questionId;  //题目ID
+    private String content;     //选项内容
+    private String picture;      //选项图片
+    private String isRight;    //是否正确答案
+
+    @Override
+    public String toString() {
+        return "QuestionItem{" +
+                "id='" + id + '\'' +
+                ", questionId='" + questionId + '\'' +
+                ", content='" + content + '\'' +
+                ", picture='" + picture + '\'' +
+                ", isRight='" + isRight + '\'' +
+                '}';
+    }
 
     public String getId() {
         return id;
