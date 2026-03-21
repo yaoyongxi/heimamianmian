@@ -38,6 +38,8 @@ public class UserServlet extends BaseServlet {
             this.userRoleList(request,response);
         }else if ("updateRole".equals(operation)) {
             this.updateRole(request,response);
+        }else if ("login".equals(operation)) {
+            this.login(request,response);
         }
     }
 
@@ -133,6 +135,12 @@ public class UserServlet extends BaseServlet {
         //跳转回到页面list
         //list(request, response);
         response.sendRedirect(request.getContextPath()+"/system/user?operation=list");
+    }
+
+    private void login(HttpServletRequest request, HttpServletResponse response) {
+        String email = request.getParameter("email");
+        String pwd = request.getParameter("password");
+        User user = userService.login(email,pwd);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

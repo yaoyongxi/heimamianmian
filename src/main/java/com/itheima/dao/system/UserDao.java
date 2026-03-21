@@ -15,4 +15,6 @@ public interface UserDao {
     void deleteRole(String userId);
 
     void updateRole(@Param("userId") String userId, @Param("roleId") String roleId);
+
+    User findByEmailAndPwd(String email, String pwd);
 }

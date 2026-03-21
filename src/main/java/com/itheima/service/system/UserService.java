@@ -55,4 +55,12 @@ public interface UserService {
      */
 
     void updateRole(String userId, String[] roleIds);
+
+    /**
+     * 根据邮箱和密码登录
+     * @param email
+     * @param pwd
+     * @return
+     */
+    User login(String email, String pwd);
 }
