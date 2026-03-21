@@ -223,25 +223,25 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-//    @Override
-//    public List<Module> findModuleById(String id) {
-//        SqlSession sqlSession = null;
-//        try{
-//            //1.获取SqlSession
-//            sqlSession = MapperFactory.getSqlSession();
-//            //2.获取Dao
-//            ModuleDao moduleDao = MapperFactory.getMapper(sqlSession,ModuleDao.class);
-//            //3.调用Dao层操作
-//            return moduleDao.findModuleByUserId(id);
-//        }catch (Exception e){
-//            throw new RuntimeException(e);
-//            //记录日志
-//        }finally {
-//            try {
-//                TransactionUtil.close(sqlSession);
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+    @Override
+    public List<Module> findModuleById(String id) {
+        SqlSession sqlSession = null;
+        try{
+            //1.获取SqlSession
+            sqlSession = MapperFactory.getSqlSession();
+            //2.获取Dao
+            ModuleDao moduleDao = MapperFactory.getMapper(sqlSession,ModuleDao.class);
+            //3.调用Dao层操作
+            return moduleDao.findModuleByUserId(id);
+        }catch (Exception e){
+            throw new RuntimeException(e);
+            //记录日志
+        }finally {
+            try {
+                TransactionUtil.close(sqlSession);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
 }
