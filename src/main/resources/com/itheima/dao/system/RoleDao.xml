@@ -52,7 +52,7 @@
         where role_id = #{id,jdbcType=VARCHAR}
     </update>
 
-    <!--配置根据id删除-->
+    <!--配置根据roleId删除关系表数据-->
     <delete id="deleteRoleModule" parameterType="java.lang.String">
         delete from ss_role_module
         where role_id = #{roleId,jdbcType=VARCHAR}

@@ -47,4 +47,12 @@ public interface UserService {
      * @return
      */
     PageInfo findAll(int page, int size);
+
+    /**
+     *
+     * @param userId
+     * @param roleIds
+     */
+
+    void updateRole(String userId, String[] roleIds);
 }

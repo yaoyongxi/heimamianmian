@@ -35,6 +35,8 @@ public class UserServlet extends BaseServlet {
             this.delete(request,response);
         }else if ("userRoleList".equals(operation)) {
             this.userRoleList(request,response);
+        }else if ("updateRole".equals(operation)) {
+            this.updateRole(request,response);
         }
     }
 
@@ -113,6 +115,15 @@ public class UserServlet extends BaseServlet {
         request.setAttribute("roleList",all);
         //跳转页面
         request.getRequestDispatcher("/WEB-INF/pages/system/user/role.jsp").forward(request,response);
+    }
+
+    private void updateRole(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userId = request.getParameter("userId");
+        String[] roleIds = request.getParameterValues("roleIds");
+        userService.updateRole(userId,roleIds);
+        //跳转回到页面list
+        //list(request, response);
+        response.sendRedirect(request.getContextPath()+"/system/user?operation=list");
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

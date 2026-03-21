@@ -178,4 +178,36 @@ public class UserServiceImpl implements UserService {
             }
         }
     }
+
+    @Override
+    public void updateRole(String userId, String[] roleIds) {
+        SqlSession sqlSession = null;
+        try {
+            //1.获取sqlSession
+            sqlSession = MapperFactory.getSqlSession();
+            //2.获取Dao
+            UserDao userDao = MapperFactory.getMapper(sqlSession, UserDao.class);
+
+            userDao.deleteRole(userId);
+            for(String roleId : roleIds){
+                userDao.updateRole(userId,roleId);
+            }
+            //4.提交事务
+            TransactionUtil.commit(sqlSession);
+
+        }catch (Exception e){
+            //回滚事务
+            TransactionUtil.rollback(sqlSession);
+            //将错误返回最上面
+            throw new RuntimeException(e);
+            //记录日志
+        }finally {
+            try {
+                TransactionUtil.close(sqlSession);
+            }catch (Exception e){
+                //打印异常
+                e.printStackTrace();
+            }
+        }
+    }
 }
