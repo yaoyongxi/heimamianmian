@@ -1,5 +1,6 @@
 package com.itheima.web.controller.system;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageInfo;
 import com.itheima.domain.system.Role;
 import com.itheima.utils.BeanUtil;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 
 //uri:/system/role?operation=list
@@ -32,6 +34,10 @@ public class RoleServlet extends BaseServlet {
             this.edit(request,response);
         }else if ("delete".equals(operation)) {
             this.delete(request,response);
+        }else if ("author".equals(operation)) {
+            this.author(request,response);
+        }else if ("updateRoleModule".equals(operation)) {
+            this.updateRoleModule(request,response);
         }
     }
 
@@ -96,6 +102,31 @@ public class RoleServlet extends BaseServlet {
         Role role = BeanUtil.fillBean(request, Role.class);
         //调用业务层接口Save
         roleService.delete(role);
+        //跳转回到页面list
+        //list(request, response);
+        response.sendRedirect(request.getContextPath()+"/system/role?operation=list");
+    }
+    private void author(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        //获取要授权的角色id
+        String roleId = request.getParameter("id");
+        //使用id查询对应的数据（角色id对应的模块信息）
+        Role role = roleService.findById(roleId);
+        request.setAttribute("role",role);
+        //根据当前的角色id获取所有的模块数据，并加载关系数据
+        List<Map> map = moduleService.findAuthorDataByRoleId(roleId);
+        //map转json数据
+        ObjectMapper om = new ObjectMapper();
+        String json = om.writeValueAsString(map);
+        request.setAttribute("roleModuleJson",json);
+        //TODO 数据未查询
+        //跳转到树页面中
+        request.getRequestDispatcher("/WEB-INF/pages/system/role/author.jsp").forward(request,response);
+    }
+
+    private void updateRoleModule(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        String roleId = request.getParameter("roleId");
+        String moduleIds = request.getParameter("moduleIds");
+        roleService.updateRoleModule(roleId,moduleIds);
         //跳转回到页面list
         //list(request, response);
         response.sendRedirect(request.getContextPath()+"/system/role?operation=list");

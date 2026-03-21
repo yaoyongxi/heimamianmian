@@ -179,5 +179,39 @@ public class RoleServiceImpl implements RoleService {
             }
         }
     }
+    public void updateRoleModule(String roleId,String moduleIds){
+        SqlSession sqlSession = null;
+        try {
+            //1.获取sqlSession
+            sqlSession = MapperFactory.getSqlSession();
+            //2.获取Dao
+            RoleDao roleDao = MapperFactory.getMapper(sqlSession, RoleDao.class);
+            //3.调用Dao层操作
+            //修改role_module
+            //3.1现有的关系全部取消掉
+            roleDao.deleteRoleModule(roleId);
+            //3.2建立新的关系（多个）
+            String[] moduleArray = moduleIds.split(",");
+            for(String moduleId:moduleArray){
+                roleDao.saveRoleModule(roleId,moduleId);
+            }
+            //4.提交事务
+            TransactionUtil.commit(sqlSession);
+
+        }catch (Exception e){
+            //回滚事务
+            TransactionUtil.rollback(sqlSession);
+            //将错误返回最上面
+            throw new RuntimeException(e);
+            //记录日志
+        }finally {
+            try {
+                TransactionUtil.close(sqlSession);
+            }catch (Exception e){
+                //打印异常
+                e.printStackTrace();
+            }
+        }
+    }
 }
 

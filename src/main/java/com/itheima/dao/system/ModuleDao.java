@@ -3,6 +3,7 @@ package com.itheima.dao.system;
 import com.itheima.domain.system.Module;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ModuleDao {
         int save(Module module);
@@ -11,4 +12,5 @@ public interface ModuleDao {
         Module findById(String id);
         List<Module> findAll();
 
+        List<Map> findAuthorDataByRoleId(String roleId);
 }

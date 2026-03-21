@@ -10,6 +10,7 @@ import com.itheima.utils.TransactionUtil;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 
@@ -166,6 +167,28 @@ public class ModuleServiceImpl implements ModuleService {
             List<Module> all = moduleDao.findAll();
             PageInfo pageInfo = new PageInfo(all);
             return pageInfo;
+        }catch (Exception e){
+            //将错误返回最上面
+            throw new RuntimeException(e);
+            //记录日志
+        }finally {
+            try {
+                TransactionUtil.close(sqlSession);
+            }catch (Exception e){
+                //打印异常
+                e.printStackTrace();
+            }
+        }
+    }
+    public List<Map> findAuthorDataByRoleId(String roleId) {
+        SqlSession sqlSession = null;
+        try {
+            //1.获取sqlSession
+            sqlSession = MapperFactory.getSqlSession();
+            //2.获取Dao
+            ModuleDao moduleDao = MapperFactory.getMapper(sqlSession, ModuleDao.class);
+            //3.调用Dao层操作
+            return moduleDao.findAuthorDataByRoleId(roleId);
         }catch (Exception e){
             //将错误返回最上面
             throw new RuntimeException(e);
