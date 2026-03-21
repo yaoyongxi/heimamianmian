@@ -29,7 +29,7 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">登录系统</p>
-        <%--<form action="${pageContext.request.contextPath}/login?operation=login" method="post">--%>
+<%--        <form action="${pageContext.request.contextPath}/login?operation=login" method="post">--%>
         <form action="${pageContext.request.contextPath}/pages/home/main.jsp" method="post">
             <div class="form-group has-feedback">
                 <input type="email" name="email" class="form-control" placeholder="Email" value="test@itcast.cn">
