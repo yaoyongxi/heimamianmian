@@ -2,6 +2,7 @@ D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\dao\store\CompanyDao.j
 D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\web\controller\store\CatalogServlet.java
 D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\domain\store\QuestionItem.java
 D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\domain\system\User.java
+D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\utils\MD5Util.java
 D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\service\system\RoleService.java
 D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\dao\store\QuestionItemDao.java
 D:\java_wenjian\ITHeiMa\HeiMamm\src\main\java\com\itheima\dao\system\RoleDao.java
