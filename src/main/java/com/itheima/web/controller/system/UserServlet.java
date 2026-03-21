@@ -2,6 +2,7 @@ package com.itheima.web.controller.system;
 
 
 import com.github.pagehelper.PageInfo;
+import com.itheima.domain.system.Role;
 import com.itheima.domain.system.User;
 import com.itheima.utils.BeanUtil;
 import com.itheima.web.controller.BaseServlet;
@@ -12,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+
 //uri:/system/user?operation=list
 @WebServlet("/system/user")
 public class UserServlet extends BaseServlet {
@@ -30,8 +33,11 @@ public class UserServlet extends BaseServlet {
             this.edit(request,response);
         }else if ("delete".equals(operation)) {
             this.delete(request,response);
+        }else if ("userRoleList".equals(operation)) {
+            this.userRoleList(request,response);
         }
     }
+
 
 
     private void list(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
@@ -96,6 +102,17 @@ public class UserServlet extends BaseServlet {
         //跳转回到页面list
         //list(request, response);
         response.sendRedirect(request.getContextPath()+"/system/user?operation=list");
+    }
+    private void userRoleList(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+        String userId = request.getParameter("id");
+        User user = userService.findById(userId);
+        //将数据加载到指定区域，供页面获取
+        request.setAttribute("user",user);
+        //获取所有的角色列表
+        List<Role> all = roleService.findAllRoleByUserId(userId);
+        request.setAttribute("roleList",all);
+        //跳转页面
+        request.getRequestDispatcher("/WEB-INF/pages/system/user/role.jsp").forward(request,response);
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

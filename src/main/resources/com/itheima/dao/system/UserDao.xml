@@ -70,4 +70,6 @@
         where user_id = #{id,jdbcType=VARCHAR}
     </update>
 
+
+
 </mapper>

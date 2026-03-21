@@ -56,5 +56,7 @@ public interface RoleService{
      */
 
     void updateRoleModule(String roleId, String moduleIds);
+
+    List<Role> findAllRoleByUserId(String userId);
 }
 
