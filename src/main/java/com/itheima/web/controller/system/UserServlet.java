@@ -2,7 +2,6 @@ package com.itheima.web.controller.system;
 
 
 import com.github.pagehelper.PageInfo;
-import com.itheima.domain.system.Dept;
 import com.itheima.domain.system.Role;
 import com.itheima.domain.system.User;
 import com.itheima.utils.BeanUtil;
@@ -63,12 +62,7 @@ public class UserServlet extends BaseServlet {
         //跳转页面
         request.getRequestDispatcher("/WEB-INF/pages/system/user/list.jsp").forward(request,response);
     }
-
-
     private void toAdd(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
-        //加载所有部门信息放到deptList
-        List<Dept> all = deptService.findAll();
-        request.setAttribute("deptList",all);
         //跳转页面
         request.getRequestDispatcher("/WEB-INF/pages/system/user/add.jsp").forward(request,response);
     }
@@ -89,9 +83,6 @@ public class UserServlet extends BaseServlet {
 //        UserService = new UserServiceImpl();
         User user = userService.findById(id);
         //将数据加载到指定区域，供页面获取
-        //加载所有部门信息放到deptList
-        List<Dept> all = deptService.findAll();
-        request.setAttribute("deptList",all);
         request.setAttribute("user",user);
         //跳转页面
         request.getRequestDispatcher("/WEB-INF/pages/system/user/update.jsp").forward(request,response);
