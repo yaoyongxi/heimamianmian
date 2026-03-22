@@ -57,8 +57,12 @@
                 <div class="pull-left">
                     <div class="form-group form-inline">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default" title="新建" onclick='location.href="${ctx}/system/module?operation=toAdd"'><i class="fa fa-file-o"></i> 新建</button>
-                            <button type="button" class="btn btn-default" title="删除" onclick='deleteById()'><i class="fa fa-trash-o"></i> 删除</button>
+                            <c:if test="${sessionScope.authorStr.contains('system/module?operation=toAdd')}">
+                                <button type="button" class="btn btn-default" title="新建" onclick='location.href="${ctx}/system/module?operation=toAdd"'><i class="fa fa-file-o"></i> 新建</button>
+                            </c:if>
+                            <c:if test="${sessionScope.authorStr.contains('system/module?operation=delete')}">
+                                <button type="button" class="btn btn-default" title="删除" onclick='deleteById()'><i class="fa fa-trash-o"></i> 删除</button>
+                            </c:if>
                             <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                         </div>
                     </div>

@@ -24,6 +24,7 @@ com\itheima\web\controller\system\ModuleServlet.class
 com\itheima\domain\store\QuestionItem.class
 com\itheima\service\system\impl\RoleServiceImpl.class
 com\itheima\web\controller\store\CatalogServlet.class
+com\itheima\web\filters\AuthorFilter.class
 com\itheima\service\store\CatalogService.class
 com\itheima\dao\store\CatalogDao.class
 com\itheima\domain\system\User.class

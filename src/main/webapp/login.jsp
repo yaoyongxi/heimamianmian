@@ -1,5 +1,4 @@
-<%--<%@ page contentType="text/html; charset=utf-8"%>--%>
-<%@ page isELIgnored="false" contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html; charset=utf-8"%>
 <html>
 <head>
     <meta charset="utf-8">
